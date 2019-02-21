@@ -186,7 +186,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Reproducible Research: Peer Assessment 1</h1>
 <h4 class="author"><em>Mario Leclerc</em></h4>
-<h4 class="date"><em>2019/02/17</em></h4>
+<h4 class="date"><em>2019/02/21</em></h4>
 
 </div>
 
@@ -314,7 +314,7 @@ ggplot(StepsPerDay, aes(x = steps)) +
 <pre class="r"><code># mean and median total number of steps taken per day
 MeanStepsPerDay_Fill = mean(StepsPerDay$steps, na.rm = TRUE)
 MedianStepsPerDay_Fill = median(StepsPerDay$steps, na.rm = TRUE)</code></pre>
-<p>Mean with NA was 1.076618910^{4} compared to 1.076618910^{4} without with imputed values. Median with NA was 10765 compared to 1.076618910^{4}without with imputed values. The median increased slightly. The method used to impute values had little impact on the estimates of the total daily number of steps.</p>
+<p>Mean with NA was 1.076618910^{4} compared to 1.076618910^{4} with imputed values. Median with NA was 10765 compared to 1.076618910^{4} with imputed values. The median increased slightly. The method used to impute values had little impact on the estimates of the total daily number of steps.</p>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
@@ -324,7 +324,7 @@ MedianStepsPerDay_Fill = median(StepsPerDay$steps, na.rm = TRUE)</code></pre>
 <pre class="r"><code>WeekDaysl = c(2,3,4,5,6) # 1=Sunday, 7=Saturday
 activityDF_Fill &lt;- activityDF_Fill %&gt;% mutate(day = factor((wday(date) %in% WeekDaysl), levels=c(FALSE, TRUE), labels=c('weekend', 'weekday')))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Make a panel plot containing a time series plot (i.e. ???????????????? = “????”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</li>
+<li>Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</li>
 </ol>
 <pre class="r"><code>MeanStepsPerInterval &lt;- activityDF_Fill %&gt;% filter(!is.na(steps)) %&gt;% group_by(interval,day) %&gt;% summarise(steps = mean(steps))
 ggplot(MeanStepsPerInterval, aes(x = interval , y = steps, color=day)) + geom_line() + labs(title = &quot;Average daily activity pattern across weekends and weekdays&quot;, x = &quot;Interval&quot;, y = &quot;Number of Steps&quot;)+ facet_wrap(~ day, nrow=2 )</code></pre>

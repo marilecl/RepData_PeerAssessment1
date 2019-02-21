@@ -1,7 +1,7 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
 author: "Mario Leclerc"
-date: "2019/02/17"
+date: "2019/02/21"
 output: 
   html_document: 
     keep_md: true
@@ -124,8 +124,8 @@ MeanStepsPerDay_Fill = mean(StepsPerDay$steps, na.rm = TRUE)
 MedianStepsPerDay_Fill = median(StepsPerDay$steps, na.rm = TRUE)
 ```
 
-Mean with NA was `r MeanStepsPerDay` compared to `r MeanStepsPerDay_Fill` without with imputed values.
-Median with NA was `r MedianStepsPerDay` compared to `r MedianStepsPerDay_Fill`without with imputed values.
+Mean with NA was `r MeanStepsPerDay` compared to `r MeanStepsPerDay_Fill` with imputed values.
+Median with NA was `r MedianStepsPerDay` compared to `r MedianStepsPerDay_Fill` with imputed values.
 The median increased slightly. The method used to impute values had little impact on the estimates of the total daily number of steps.
 
 
@@ -139,7 +139,7 @@ WeekDaysl = c(2,3,4,5,6) # 1=Sunday, 7=Saturday
 activityDF_Fill <- activityDF_Fill %>% mutate(day = factor((wday(date) %in% WeekDaysl), levels=c(FALSE, TRUE), labels=c('weekend', 'weekday')))
 ```
 
-2. Make a panel plot containing a time series plot (i.e. ???????????????? = "????") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 ```{r}
 MeanStepsPerInterval <- activityDF_Fill %>% filter(!is.na(steps)) %>% group_by(interval,day) %>% summarise(steps = mean(steps))
